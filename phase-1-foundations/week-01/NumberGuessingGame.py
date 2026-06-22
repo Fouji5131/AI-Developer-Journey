@@ -43,12 +43,17 @@ def play_game():
 
 def main():
     while True:
-        play_game()
+        try:
+            play_game()
 
-        play_again = input("If you want to play again, type 'y' or 'n': ").strip().lower()
+            play_again = input("If you want to play again, type 'y' or 'n': ").strip().lower()
 
-        if play_again != 'y':
-            print("Thanks for playing. Goodbye!")
+            if play_again != 'y':
+                print("Thanks for playing. Goodbye!")
+                break
+            
+        except KeyboardInterrupt:
+            print("\nGame interrupted. Goodbye!")
             break
 
 if __name__ == "__main__":

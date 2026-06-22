@@ -3,11 +3,15 @@ expenses = []
 
 # 1. Add Expense
 def add_expense():
-    title = input("Enter the title: ")
-    amount = input("Enter the amount: ")
-    if not amount.isdigit():
-        print("Please enter a valid amount!")
-        return
+    title = input("Enter the title: ").strip()
+
+    while True:
+        try:
+            amount = int(input("Enter the amount: "))
+            break
+        except ValueError:
+            print("Please enter a valid amount!")
+
     category = input("Enter the category: ")
 
     expense = {
@@ -18,7 +22,7 @@ def add_expense():
    
     expenses.append(expense)
     # print(f"Expense '{expense}' added successfully.")
-    return expenses
+    return expense
 
 # 2. View All Expenses
 def view_expenses():
@@ -29,6 +33,9 @@ def view_expenses():
 
 # 3. Delete Expense
 def delete_expense():
+    if not expenses:
+        return None   # nothing to delete
+        
     title = input("Enter the title of the expense to delete: ")
     for expense in expenses:
         if expense['title'] == title:
@@ -77,11 +84,12 @@ def main():
         print("==========================")
         choice = input("Enter your choice: ")
         if choice == '1':
-            expense = add_expense()
-            if expense is not None:
-                print(f"Expense '{expense}' added successfully.")
-            else:
-                print("Expense cannot be null.")
+            try:
+                expense = add_expense()
+                if expense is not None:
+                    print(f"Expense '{expense}' added successfully.")
+            except ValueError as e:
+                print(f"Error: {e}")
         elif choice == '2':
             print(display_expenses(view_expenses()))
         elif choice == '3':
