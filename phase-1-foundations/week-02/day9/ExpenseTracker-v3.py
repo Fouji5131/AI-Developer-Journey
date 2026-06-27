@@ -71,6 +71,10 @@ def search_expense(expenses, keyword):
     return results
 
 
+def sort_expense(expenses, by="amount"):
+    sorted_expenses = sorted(expenses, key=lambda e: e[by])
+    return sorted_expenses
+
 # 7. Exit
 def end_all():
     print("Thank you for using the expense tracker. Goodbye!")
@@ -95,7 +99,8 @@ def main():
         print("5. Spending by Category")
         print("6. Generate Report")
         print("7. Search Expense")
-        print("8. Exit")
+        print("8. Sort Expense")
+        print("9. Exit")
         print("==========================")
         choice = input("Enter your choice: ")
         if choice == "1":
@@ -154,6 +159,10 @@ def main():
                 print(f"Error: {e}")
 
         elif choice == "8":
+            result = sort_expense(expenses)
+            print(f"{result}")
+
+        elif choice == "9":
             end_all()
             break
         else:
