@@ -1,1 +1,14 @@
-".env__pycache__/*.pyc.DS_Storenode_modules/.venv/venv/" 
+# Virtual Environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables (sensitive data)
+.env
+
+# OS files
+# .DS_Store        # Mac
+Thumbs.db        # Windows
